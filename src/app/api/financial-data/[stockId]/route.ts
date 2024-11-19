@@ -1,3 +1,4 @@
+// src/app/api/financial-data/[stockId]/route.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import { fetchAndCacheData } from "@/lib/fetchAndCacheData";
 

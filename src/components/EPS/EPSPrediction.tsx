@@ -58,7 +58,7 @@ const EPSPrediction: React.FC<EPSPredictionProps> = ({stockId}) => {
           age: 'Current'
         },
         headers: {
-          // 'x-rapidapi-key': process.env.NEXT_PUBLIC_IND_STOCK_API_KEY,
+          'x-rapidapi-key': process.env.NEXT_PUBLIC_IND_STOCK_API_KEY,
           'x-rapidapi-host': 'indian-stock-exchange-api2.p.rapidapi.com'
  }
       };

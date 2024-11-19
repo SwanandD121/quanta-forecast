@@ -1,28 +1,32 @@
-"use client"
+"use client";
 
-// import { Line } from "lucide-react"
-import { CartesianGrid, LabelList, Line, LineChart, XAxis, YAxis } from "recharts"
-
+import React from "react";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+  LabelList,
+} from "recharts";
 import {
   Card,
   CardContent,
   CardDescription,
-  // CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-// import { useState } from "react";
+} from "@/components/ui/chart";
 
 interface ChartData {
   year: number;
-  reportedSAL: number;
-  estimatedSAL: number;
+  reported: number;
+  estimated: number;
 }
 
 interface SALChartProps {
@@ -31,30 +35,33 @@ interface SALChartProps {
 }
 
 const chartConfig = {
-  reportedSAL: {
+  reported: {
     label: "Reported SAL",
     color: "hsl(var(--chart-1))",
   },
-  estimatedSAL: {
+  estimated: {
     label: "Estimated SAL",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
-  // const [stockId, setStockId] = useState();
   return (
     <Card className="mx-96 backdrop-blur-xl">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          
           <div>
-            Forecast Metic: <span className="font-bold text-xl bg-gradient-to-b from-lime-600 to-green-600 dark:from-lime-400 dark:to-green-400 bg-clip-text text-transparent">SAL</span> &#40;Revenue&#41;
+            Forecast Metric:{" "}
+            <span className="font-bold text-xl bg-gradient-to-b from-lime-600 to-green-600 dark:from-lime-400 dark:to-green-400 bg-clip-text text-transparent">
+              SAL
+            </span>{" "}
+            &#40;Revenue&#41;
           </div>
           <div>
-            <span className="font-bold text-xl bg-gradient-to-b from-violet-300 to-purple-600 bg-clip-text text-transparent">{stockId.toUpperCase()}</span>
+            <span className="font-bold text-xl bg-gradient-to-b from-violet-300 to-purple-600 bg-clip-text text-transparent">
+              {stockId.toUpperCase()}
+            </span>
           </div>
-        
         </CardTitle>
         <CardDescription>Reported vs Estimated SAL over the years</CardDescription>
       </CardHeader>
@@ -69,46 +76,52 @@ const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
               bottom: 0,
             }}
           >
-            <CartesianGrid vertical={false} />
-            <XAxis dataKey="year" />
-            <YAxis />
+            <CartesianGrid vertical={false} strokeDasharray="3 3" />
+            <XAxis dataKey="year" tick={{ fontSize: 12 }} />
+            <YAxis tick={{ fontSize: 12 }} />
             <ChartTooltip
-              cursor={false}
+              cursor={{ strokeDasharray: "3 3" }}
               content={<ChartTooltipContent indicator="line" />}
             />
             <Line
-              dataKey="reportedSAL"
+              dataKey="reported"
+              name="Reported SAL"
               type="monotone"
-              stroke="var(--color-reportedSAL)"
+              stroke="var(--color-reported)"
               strokeWidth={2}
-              dot={{
-                fill: "var(--color-reportedSAL)",
-              }}
-              activeDot={{
-                r: 6,
-              }}
+              dot={{ fill: "var(--color-reported)" }}
+              activeDot={{ r: 6 }}
             >
-              <LabelList position="top" offset={12} className="fill-foreground" fontSize={12} />
+              <LabelList
+                dataKey="reported"
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
             </Line>
             <Line
-              dataKey="estimatedSAL"
+              dataKey="estimated"
+              name="Estimated SAL"
               type="monotone"
-              stroke="var(--color-estimatedSAL)"
+              stroke="var(--color-estimated)"
               strokeWidth={2}
-              dot={{
-                fill: "var(--color-estimatedSAL)",
-              }}
-              activeDot={{
-                r: 6,
-              }}
+              dot={{ fill: "var(--color-estimated)" }}
+              activeDot={{ r: 6 }}
             >
-              <LabelList position="top" offset={12} className="fill-foreground" fontSize={12} />
+              <LabelList
+                dataKey="estimated"
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
             </Line>
           </LineChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export default SALChart;

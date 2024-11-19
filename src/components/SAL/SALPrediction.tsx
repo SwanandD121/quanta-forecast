@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import SALChart from './SALChart'; 
+import SALChart from './SALChartOld'; 
 import { Card, CardContent, CardHeader } from '../ui/card';
 
 interface Period {
@@ -58,7 +58,7 @@ const SALPrediction: React.FC<SALPredictionProps> = ({stockId}) => {
           age: 'Current'
         },
         headers: {
-          // 'x-rapidapi-key': process.env.NEXT_PUBLIC_IND_STOCK_API_KEY,
+          'x-rapidapi-key': process.env.NEXT_PUBLIC_IND_STOCK_API_KEY,
           'x-rapidapi-host': 'indian-stock-exchange-api2.p.rapidapi.com'
  }
       };
