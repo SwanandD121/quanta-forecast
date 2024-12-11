@@ -1,26 +1,26 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import SALChart from "./SAL/SALChart";
+import React, { useEffect, useState } from "react"
+import SALChart from "./SAL/SALChart"
 
 interface FinancialPredictionProps {
-  stockId: string;
-  metricType: string;
+  stockId: string
+  metricType: string
 }
 
 const FinancialPrediction: React.FC<FinancialPredictionProps> = ({
   stockId,
   metricType,
 }) => {
-  const [data, setData] = useState([]);
-  const [chartData, setChartData] = useState([]);
-  const [error, setError] = useState("");
+  const [data, setData] = useState([])
+  const [chartData, setChartData] = useState([])
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `/api/financial-data/${stockId}?metricType=${metricType}`
+          `/api/financial-data/${stockId}&metricType=${metricType}`
         );
         if (!response.ok) throw new Error("Failed to fetch data");
 
@@ -42,6 +42,7 @@ const FinancialPrediction: React.FC<FinancialPredictionProps> = ({
     fetchData();
   }, [stockId, metricType]);
 
+
   return (
     <div>
       {error ? (
@@ -52,7 +53,7 @@ const FinancialPrediction: React.FC<FinancialPredictionProps> = ({
         <p>Loading...</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FinancialPrediction;
+export default FinancialPrediction

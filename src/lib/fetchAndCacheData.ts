@@ -15,7 +15,13 @@ export async function fetchAndCacheData(stockId: string, metricType: string) {
   const options = {
     method: "GET",
     url: apiUrl,
-    params: { stock_id: stockId, measure_code: metricType },
+    params: { 
+      stock_id: stockId, 
+      measure_code: metricType,
+      period_type: "Annual",
+      data_type: "Actuals",
+      age: "Current"
+    },
     headers: {
       "x-rapidapi-key": process.env.NEXT_PUBLIC_IND_STOCK_API_KEY,
       "x-rapidapi-host": "indian-stock-exchange-api2.p.rapidapi.com",
@@ -23,7 +29,12 @@ export async function fetchAndCacheData(stockId: string, metricType: string) {
   };
 
   const response = await axios.request(options);
+  if (response.status !== 200) {
+    console.error(`Error fetching data: ${response.statusText}`);
+    return [];
+  }
   const apiData = response.data.periods;
+  console.log(apiData);
 
   const dataToCache = apiData.map((period: any) => ({
     stockId,
