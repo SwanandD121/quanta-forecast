@@ -1,48 +1,24 @@
-// // src/app/api/financial-data/[stockId]/route.ts
-// import { NextApiRequest, NextApiResponse } from "next";
-// import { fetchAndCacheData } from "@/lib/fetchAndCacheData";
+import { NextResponse } from 'next/server';
+import { fetchAndCacheData } from '@/lib/fetchAndCacheData';
 
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-//   const { stockId, metricType } = req.query;
+export async function GET(req: Request, { params }: { params: { stockId: string } }) {
+  const { stockId } = params;
+  const { metricType } = req.url?.split('?')[1]?.split('&')?.reduce((acc: any, param) => {
+    const [key, value] = param.split('=');
+    acc[key] = value;
+    return acc;
+  }, {}) ?? {};
 
-//   if (!stockId || !metricType) {
-//     return res.status(400).json({ error: "Missing stockId or metricType" });
-//   }
-
-//   try {
-//     const data = await fetchAndCacheData(stockId as string, metricType as string);
-//     res.status(200).json(data);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Failed to fetch data" });
-//   }
-// }
-
-import { NextApiRequest, NextApiResponse } from "next";
-import { fetchAndCacheData } from "@/lib/fetchAndCacheData";
-
-export async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
-    const { stockId } = req.query;
-    const metricType = req.query.metricType as string;
-
-    if (!stockId || !metricType) {
-      return res.status(400).json({ error: "Missing stockId or metricType" });
-    }
-
-    try {
-      const data = await fetchAndCacheData(stockId as string, metricType);
-      res.status(200).json(data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to fetch data" });
-    }
-    console.log("Stock ID:", stockId);
-    console.log("Metric Type:", metricType);
-  } else {
-    // If the request method is not GET, respond with 405
-    res.setHeader("Allow", ["GET"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+  // Validation check
+  if (!stockId || !metricType) {
+    return NextResponse.json({ error: "Missing stockId or metricType" }, { status: 400 });
   }
 
+  try {
+    const data = await fetchAndCacheData(stockId, metricType);
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
+  }
 }

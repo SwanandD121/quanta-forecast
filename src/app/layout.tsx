@@ -4,15 +4,11 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import UpperGradient from "@/components/UpperGradient";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const hubotSans = localFont({
+  src: "./fonts/HubotSans-Regular.woff", // Adjust this path if needed
+  variable: "--font-hubot-sans",
+  weight: "100 900", // Adjust the weight as needed
+  fallback: ['Arial', 'sans-serif']
 });
 
 export const metadata: Metadata = {
@@ -28,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${hubotSans.variable} antialiased`}
       >
         <ThemeProvider 
             attribute="class"
