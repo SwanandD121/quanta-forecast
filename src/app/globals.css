@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Hubot Sans';
+  src: url('path/to/HubotSans.woff2') format('woff2'),
+       url('path/to/HubotSans.woff') format('woff');
+}
+
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'Hubot Sans', sans-serif;
