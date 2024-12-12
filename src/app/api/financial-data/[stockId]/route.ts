@@ -1,4 +1,4 @@
-//Required during fetching and caching feature development 
+// Required during fetching and caching feature development 
 
 // import { NextResponse } from 'next/server';
 // import { fetchAndCacheData } from '@/lib/fetchAndCacheData';

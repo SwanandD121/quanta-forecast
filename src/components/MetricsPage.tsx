@@ -1,27 +1,30 @@
-"use client"
-import StockSearch from "@/components/StockSearch";
-import React, { useState } from "react";
-import FinancialPrediction from "./FinancialPredicition";
+// Required during fetching and caching feature development 
+// ________________________________________________________
 
-const MetricsPage = () => {
-  const [stockId, setStockId] = useState("");
+// "use client"
+// import StockSearch from "@/components/StockSearch";
+// import React, { useState } from "react";
+// import FinancialPrediction from "./FinancialPredicition";
 
-  const handleSearch = (searchId: string) => {
-    setStockId(searchId);
-  };
+// const MetricsPage = () => {
+//   const [stockId, setStockId] = useState("");
 
-  return (
-    <div>
-      <StockSearch onSearch={handleSearch} />
-      {stockId && (
-        <div>
-          <FinancialPrediction stockId={stockId} metricType="SAL" />
-          <FinancialPrediction stockId={stockId} metricType="EPS" />
-          <FinancialPrediction stockId={stockId} metricType="ROE" />
-        </div>
-      )}
-    </div>
-  );
-};
+//   const handleSearch = (searchId: string) => {
+//     setStockId(searchId);
+//   };
 
-export default MetricsPage;
+//   return (
+//     <div>
+//       <StockSearch onSearch={handleSearch} />
+//       {stockId && (
+//         <div>
+//           <FinancialPrediction stockId={stockId} metricType="SAL" />
+//           <FinancialPrediction stockId={stockId} metricType="EPS" />
+//           <FinancialPrediction stockId={stockId} metricType="ROE" />
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default MetricsPage;

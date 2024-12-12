@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import Footer from './Footer';
 import Link from 'next/link';
 
-const Landing2: React.FC = () => {
+const Landing: React.FC = () => {
     const {resolvedTheme} = useTheme();
   return (
     <div className="overflow-x-hidden">
@@ -61,4 +61,4 @@ const Landing2: React.FC = () => {
   );
 };
 
-export default Landing2;
+export default Landing;
