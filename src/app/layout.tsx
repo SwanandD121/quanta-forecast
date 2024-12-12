@@ -4,12 +4,21 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import UpperGradient from "@/components/UpperGradient";
 
+// const hubotSans = localFont({
+//   src: `
+//     url('./fonts/HubotSans.woff2') format('woff2'),
+//     url('./fonts/HubotSans.woff') format('woff')
+//   `,
+//   variable: "--font-hubot-sans",
+//   weight: "100 900", // Adjust the weight as needed
+//   fallback: ['Arial', 'sans-serif']
+// });
 const hubotSans = localFont({
-  src: "./fonts/HubotSans-Regular.woff", // Adjust this path if needed
-  variable: "--font-hubot-sans",
-  weight: "100 900", // Adjust the weight as needed
-  fallback: ['Arial', 'sans-serif']
+  src: "./fonts/Hubot-Sans.woff2",
+  variable: "--font-geist-sans",
+  weight: "100 900",
 });
+
 
 export const metadata: Metadata = {
   title: "Quanta",
