@@ -3,7 +3,6 @@ import localFont from "next/font/local"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import UpperGradient from "@/components/UpperGradient"
-import { AuthProvider } from "./AuthProvider"
 
 // const hubotSans = localFont({
 //   src: `
@@ -31,7 +30,6 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <AuthProvider>
       <html lang="en" suppressHydrationWarning={true}>
         <body className={`${hubotSans.variable} antialiased`}>
           <ThemeProvider
@@ -45,6 +43,5 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </AuthProvider>
   )
 }
