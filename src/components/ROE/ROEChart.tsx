@@ -1,7 +1,14 @@
 "use client"
 
 // import { Line } from "lucide-react"
-import { CartesianGrid, LabelList, Line, LineChart, XAxis, YAxis } from "recharts"
+import {
+  CartesianGrid,
+  LabelList,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from "recharts"
 
 import {
   Card,
@@ -20,14 +27,14 @@ import {
 // import { useState } from "react";
 
 interface ChartData {
-  year: number;
-  reportedROE: number;
-  estimatedROE: number;
+  year: number
+  reportedROE: number
+  estimatedROE: number
 }
 
 interface ROEChartProps {
-  data: ChartData[];
-  stockId: string;
+  data: ChartData[]
+  stockId: string
 }
 
 const chartConfig = {
@@ -47,16 +54,22 @@ const ROEChart: React.FC<ROEChartProps> = ({ data, stockId }) => {
     <Card className="mx-96 backdrop-blur-xl">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          
           <div>
-            Forecast Metic: <span className="font-bold text-xl bg-gradient-to-b from-lime-600 to-green-600 dark:from-lime-400 dark:to-green-400 bg-clip-text text-transparent">ROE </span>&#40;Return on Equity&#41;
+            Forecast Metic:{" "}
+            <span className="font-bold text-xl bg-gradient-to-b from-lime-600 to-green-600 dark:from-lime-400 dark:to-green-400 bg-clip-text text-transparent">
+              ROE{" "}
+            </span>
+            &#40;Return on Equity&#41;
           </div>
           <div>
-            <span className="font-bold text-xl bg-gradient-to-b from-violet-300 to-purple-600 bg-clip-text text-transparent">{stockId.toUpperCase()}</span>
+            <span className="font-bold text-xl bg-gradient-to-b from-violet-300 to-purple-600 bg-clip-text text-transparent">
+              {stockId.toUpperCase()}
+            </span>
           </div>
-        
         </CardTitle>
-        <CardDescription>Reported vs Estimated ROE over the years</CardDescription>
+        <CardDescription>
+          Reported vs Estimated ROE over the years
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -88,7 +101,12 @@ const ROEChart: React.FC<ROEChartProps> = ({ data, stockId }) => {
                 r: 6,
               }}
             >
-              <LabelList position="top" offset={12} className="fill-foreground" fontSize={12} />
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
             </Line>
             <Line
               dataKey="estimatedROE"
@@ -102,7 +120,12 @@ const ROEChart: React.FC<ROEChartProps> = ({ data, stockId }) => {
                 r: 6,
               }}
             >
-              <LabelList position="top" offset={12} className="fill-foreground" fontSize={12} />
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
             </Line>
           </LineChart>
         </ChartContainer>
@@ -111,4 +134,4 @@ const ROEChart: React.FC<ROEChartProps> = ({ data, stockId }) => {
   )
 }
 
-export default ROEChart;
+export default ROEChart

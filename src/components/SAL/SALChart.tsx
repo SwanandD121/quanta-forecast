@@ -1,57 +1,61 @@
-"use client";
+"use client"
 
-import React from "react";
+// import { Line } from "lucide-react"
 import {
   CartesianGrid,
+  LabelList,
   Line,
   LineChart,
   XAxis,
   YAxis,
-  LabelList,
-} from "recharts";
+} from "recharts"
+
 import {
   Card,
   CardContent,
   CardDescription,
+  // CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@/components/ui/chart"
+// import { useState } from "react";
 
 interface ChartData {
-  year: number;
-  reported: number;
-  estimated: number;
+  year: number
+  reportedSAL: number
+  estimatedSAL: number
 }
 
 interface SALChartProps {
-  data: ChartData[];
-  stockId: string;
+  data: ChartData[]
+  stockId: string
 }
 
 const chartConfig = {
-  reported: {
+  reportedSAL: {
     label: "Reported SAL",
     color: "hsl(var(--chart-1))",
   },
-  estimated: {
+  estimatedSAL: {
     label: "Estimated SAL",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
+  // const [stockId, setStockId] = useState();
   return (
     <Card className="mx-96 backdrop-blur-xl">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div>
-            Forecast Metric:{" "}
+            Forecast Metic:{" "}
             <span className="font-bold text-xl bg-gradient-to-b from-lime-600 to-green-600 dark:from-lime-400 dark:to-green-400 bg-clip-text text-transparent">
               SAL
             </span>{" "}
@@ -63,7 +67,9 @@ const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
             </span>
           </div>
         </CardTitle>
-        <CardDescription>Reported vs Estimated SAL over the years</CardDescription>
+        <CardDescription>
+          Reported vs Estimated SAL over the years
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -76,24 +82,26 @@ const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
               bottom: 0,
             }}
           >
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="year" tick={{ fontSize: 12 }} />
-            <YAxis tick={{ fontSize: 12 }} />
+            <CartesianGrid vertical={false} />
+            <XAxis dataKey="year" />
+            <YAxis />
             <ChartTooltip
-              cursor={{ strokeDasharray: "3 3" }}
+              cursor={false}
               content={<ChartTooltipContent indicator="line" />}
             />
             <Line
-              dataKey="reported"
-              name="Reported SAL"
+              dataKey="reportedSAL"
               type="monotone"
-              stroke="var(--color-reported)"
+              stroke="var(--color-reportedSAL)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-reported)" }}
-              activeDot={{ r: 6 }}
+              dot={{
+                fill: "var(--color-reportedSAL)",
+              }}
+              activeDot={{
+                r: 6,
+              }}
             >
               <LabelList
-                dataKey="reported"
                 position="top"
                 offset={12}
                 className="fill-foreground"
@@ -101,16 +109,18 @@ const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
               />
             </Line>
             <Line
-              dataKey="estimated"
-              name="Estimated SAL"
+              dataKey="estimatedSAL"
               type="monotone"
-              stroke="var(--color-estimated)"
+              stroke="var(--color-estimatedSAL)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-estimated)" }}
-              activeDot={{ r: 6 }}
+              dot={{
+                fill: "var(--color-estimatedSAL)",
+              }}
+              activeDot={{
+                r: 6,
+              }}
             >
               <LabelList
-                dataKey="estimated"
                 position="top"
                 offset={12}
                 className="fill-foreground"
@@ -121,7 +131,7 @@ const SALChart: React.FC<SALChartProps> = ({ data, stockId }) => {
         </ChartContainer>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default SALChart;
+export default SALChart
